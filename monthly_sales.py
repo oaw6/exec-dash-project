@@ -54,7 +54,7 @@ with open(chosen_file_path, "r") as csv_file:
 print(type(sales_list))
 print(type(sales_list[0]))
 
-#Creates list of products in file as list of dictionaries
+#Creates list of products in file as list and what will become the list of sales sums for each product
 product_list = []
 summed_dictionary_list = []
 for row in sales_list:
@@ -63,6 +63,15 @@ for row in sales_list:
         product_list.append(row["product"])
         summed_dictionary_list.append({"Product":row["product"], "Monthly Sales":float(0)})
 print(product_list)
+print(summed_dictionary_list)
+
+#Perform summation calculations
+for row in sales_list:
+    current_product = row["product"]
+    for list_item in summed_dictionary_list:
+        test_var2 = current_product == list_item["Product"]
+        if test_var2 == True:
+            list_item["Monthly Sales"] = list_item["Monthly Sales"] + float(row["sales price"])
 print(summed_dictionary_list)
 
 print("-----------------------")
