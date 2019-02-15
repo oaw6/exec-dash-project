@@ -31,7 +31,7 @@ print("--------------------------------------------")
 print("Please type in the name of the file for the ")
 chosen_file = input("month you want to explore: ")
 
-#Checks to make sure the typed file exists
+#Checks to make sure the typed file exists (and includes false-input message)
 if os.path.isfile(os.path.join(os.path.dirname(__file__), "data", chosen_file)) == False:
     print("--------------------------------------------")
     print("--------------------------------------------")
@@ -41,7 +41,7 @@ if os.path.isfile(os.path.join(os.path.dirname(__file__), "data", chosen_file)) 
     print("and make sure NOT to type the quotation marks.")
     print("--------------------------------------------")
     print("--------------------------------------------")
-    sys.exit("Please re-run the program and try again!")
+    sys.exit("Please re-run the program and try again!") #Got this from stack exchange
 
 #Reads the csv file and converts the data to a list of dictionaries
 chosen_file_path = os.path.join(os.path.dirname(__file__), "data", chosen_file)
@@ -51,8 +51,8 @@ with open(chosen_file_path, "r") as csv_file:
     for row in reader:
         sales_list.append(dict(row))
         #print(row["product"], row["sales price"])
-print(type(sales_list))
-print(type(sales_list[0]))
+#print(type(sales_list))
+#print(type(sales_list[0]))
 
 #Creates list of products in file as list and what will become the list of sales sums for each product
 product_list = []
@@ -62,8 +62,8 @@ for row in sales_list:
     if test_var == False:
         product_list.append(row["product"])
         summed_dictionary_list.append({"Product":row["product"], "Monthly Sales":float(0)})
-print(product_list)
-print(summed_dictionary_list)
+#print(product_list)
+#print(summed_dictionary_list)
 
 #Perform summation calculations
 for row in sales_list:
@@ -72,7 +72,24 @@ for row in sales_list:
         test_var2 = current_product == list_item["Product"]
         if test_var2 == True:
             list_item["Monthly Sales"] = list_item["Monthly Sales"] + float(row["sales price"])
-print(summed_dictionary_list)
+#print(summed_dictionary_list)
+
+#Calculates total monthly sales as a variable
+total_monthly_sales = 0
+for list_item in summed_dictionary_list:
+    total_monthly_sales = total_monthly_sales + list_item["Monthly Sales"]
+#print(total_monthly_sales)
+
+#Prints monthly sales by product and total monthly sales
+print("--------------------------------------------")
+print("--------------------------------------------")
+for list_item in summed_dictionary_list:
+    print(list_item)
+print("--------------------------------------------")
+print("Total Monthly Sales: ", total_monthly_sales)
+print("--------------------------------------------")
+print("--------------------------------------------")
+print("--------------------------------------------")
 
 print("-----------------------")
 print("MONTH: March 2018")
