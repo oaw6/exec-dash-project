@@ -3,6 +3,7 @@
 # TODO: import some modules and/or packages here
 import os
 import sys
+import csv
 
 # TODO: write some Python code here to produce the desired functionality...
 
@@ -40,6 +41,13 @@ if os.path.isfile(os.path.join(os.path.dirname(__file__), "data", chosen_file)) 
     print("--------------------------------------------")
     print("--------------------------------------------")
     sys.exit("Please re-run the program and try again!")
+
+#Reads the csv file and (temporarily) prints the list items
+chosen_file_path = os.path.join(os.path.dirname(__file__), "data", chosen_file)
+with open(chosen_file_path, "r") as csv_file:
+    reader = csv.DictReader(csv_file)
+    for row in reader:
+        print(row["product"], row["sales price"])
 
 print("-----------------------")
 print("MONTH: March 2018")
