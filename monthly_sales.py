@@ -17,15 +17,16 @@ print("--------------------------------------------")
 print("--------------------------------------------")
 
 #Prints the list of available csv files in the "data" sub-directory of the current repository
-current_directory = os.getcwd()
-csv_file_list = os.listdir(current_directory + "/data")
+#current_directory = os.getcwd()
+#csv_file_list = os.listdir(current_directory + "/data")
+csv_file_list = os.listdir(os.path.join(os.path.dirname(__file__), "data"))
 print(csv_file_list)
 
 #Asks which month the user wants to explore
 print("--------------------------------------------")
 print("--------------------------------------------")
 print("Please type in the name of the file for the ")
-print("month you want to explore:")
+chosen_file = input("month you want to explore: ")
 
 print("-----------------------")
 print("MONTH: March 2018")
