@@ -54,6 +54,17 @@ with open(chosen_file_path, "r") as csv_file:
 print(type(sales_list))
 print(type(sales_list[0]))
 
+#Creates list of products in file as list of dictionaries
+product_list = []
+summed_dictionary_list = []
+for row in sales_list:
+    test_var = row["product"] in product_list
+    if test_var == False:
+        product_list.append(row["product"])
+        summed_dictionary_list.append({"Product":row["product"], "Monthly Sales":float(0)})
+print(product_list)
+print(summed_dictionary_list)
+
 print("-----------------------")
 print("MONTH: March 2018")
 
