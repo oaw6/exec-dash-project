@@ -1,8 +1,13 @@
 # monthly_sales.py
 
 # TODO: import some modules and/or packages here
+import os
 
 # TODO: write some Python code here to produce the desired functionality...
+
+current_directory = os.getcwd()
+csv_file_list = os.listdir(current_directory + "/data")
+print(csv_file_list)
 
 print("-----------------------")
 print("MONTH: March 2018")
