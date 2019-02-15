@@ -84,9 +84,9 @@ for list_item in summed_dictionary_list:
 print("--------------------------------------------")
 print("--------------------------------------------")
 for list_item in summed_dictionary_list:
-    print(list_item)
+    print(list_item["Product"], ": ${0:,.2f}".format(list_item["Monthly Sales"]))
 print("--------------------------------------------")
-print("Total Monthly Sales: ", total_monthly_sales)
+print("Total Monthly Sales: ${0:,.2f}".format(total_monthly_sales))
 print("--------------------------------------------")
 print("--------------------------------------------")
 print("--------------------------------------------")
