@@ -4,6 +4,7 @@
 import os
 import sys
 import csv
+import operator
 
 # TODO: write some Python code here to produce the desired functionality...
 
@@ -42,12 +43,16 @@ if os.path.isfile(os.path.join(os.path.dirname(__file__), "data", chosen_file)) 
     print("--------------------------------------------")
     sys.exit("Please re-run the program and try again!")
 
-#Reads the csv file and (temporarily) prints the list items
+#Reads the csv file and converts the data to a list of dictionaries
 chosen_file_path = os.path.join(os.path.dirname(__file__), "data", chosen_file)
+sales_list = []
 with open(chosen_file_path, "r") as csv_file:
     reader = csv.DictReader(csv_file)
     for row in reader:
-        print(row["product"], row["sales price"])
+        sales_list.append(dict(row))
+        #print(row["product"], row["sales price"])
+print(type(sales_list))
+print(type(sales_list[0]))
 
 print("-----------------------")
 print("MONTH: March 2018")
