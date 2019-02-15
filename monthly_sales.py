@@ -2,6 +2,7 @@
 
 # TODO: import some modules and/or packages here
 import os
+import sys
 
 # TODO: write some Python code here to produce the desired functionality...
 
@@ -38,6 +39,7 @@ if os.path.isfile(os.path.join(os.path.dirname(__file__), "data", chosen_file)) 
     print("and make sure NOT to type the quotation marks.")
     print("--------------------------------------------")
     print("--------------------------------------------")
+    sys.exit("Please re-run the program and try again!")
 
 print("-----------------------")
 print("MONTH: March 2018")
