@@ -43,6 +43,38 @@ if os.path.isfile(os.path.join(os.path.dirname(__file__), "data", chosen_file)) 
     print("--------------------------------------------")
     sys.exit("Please re-run the program and try again!") #Got this from stack exchange
 
+#Gets month and year values from file name
+first_reduction = chosen_file[:12]
+second_reduction = first_reduction[-6:]
+year_value = int(second_reduction[:4])
+month_value = int(second_reduction[-2:])
+if month_value == 1:
+    month_name = "January"
+elif month_value == 2:
+    month_name = "February"
+elif month_value == 3:
+    month_name = "March"
+elif month_value == 4:
+    month_name = "April"
+elif month_value == 5:
+    month_name = "May"
+elif month_value == 6:
+    month_name = "June"
+elif month_value == 7:
+    month_name = "July"
+elif month_value == 8:
+    month_name = "August"
+elif month_value == 9:
+    month_name = "September"
+elif month_value == 10:
+    month_name = "October"
+elif month_value == 11:
+    month_name = "November"
+elif month_value == 12:
+    month_name = "December"
+print(month_name)
+print(year_value)
+
 #Reads the csv file and converts the data to a list of dictionaries
 chosen_file_path = os.path.join(os.path.dirname(__file__), "data", chosen_file)
 sales_list = []
