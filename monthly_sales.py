@@ -6,6 +6,7 @@ import sys
 import csv
 import operator
 
+
 # TODO: write some Python code here to produce the desired functionality...
 
 #Introduces the program
@@ -106,8 +107,10 @@ for row in sales_list:
             list_item["Monthly Sales"] = list_item["Monthly Sales"] + float(row["sales price"])
 #print(summed_dictionary_list)
 
-#Creates sorted list (by sales) for top-selling products section
+#Creates sorted list (by sales) for top-selling products section and a list of product names in that order for chart
 summed_dictionary_list.sort(key=operator.itemgetter("Monthly Sales"), reverse=True)
+#for list_item in summed_dictionary_list:
+    #product_list.append(list_item["Product"])
 
 #Calculates total monthly sales as a variable
 total_monthly_sales = 0
@@ -132,21 +135,43 @@ print("1. ", summed_dictionary_list[0]["Product"], ": ${0:,.2f}".format(summed_d
 print("2. ", summed_dictionary_list[1]["Product"], ": ${0:,.2f}".format(summed_dictionary_list[1]["Monthly Sales"]))
 print("3. ", summed_dictionary_list[2]["Product"], ": ${0:,.2f}".format(summed_dictionary_list[2]["Monthly Sales"]))
 print("--------------------------------------------")
+print("--------------------------------------------")
+print("Creating pie chart depicting product sales")
+print("as a percent of total monthly sales...")
+print("--------------------------------------------")
 
-print("-----------------------")
-print("MONTH: March 2018")
+import matplotlib.pyplot as plt
+import numpy as np
 
-print("-----------------------")
-print("CRUNCHING THE DATA...")
+pie_data = summed_dictionary_list
 
-print("-----------------------")
-print("TOTAL MONTHLY SALES: $12,000.71")
+sales_percents = []
+pie_labels = []
+for list_item in summed_dictionary_list:
+    temp_percent = list_item["Monthly Sales"] / total_monthly_sales
+    sales_percents.append(round(temp_percent, 2))
+    pie_labels.append(list_item["Product"])
 
-print("-----------------------")
-print("TOP SELLING PRODUCTS:")
-print("  1) Button-Down Shirt: $6,960.35")
-print("  2) Super Soft Hoodie: $1,875.00")
-print("  3) etc.")
+fig1, ax1 = plt.subplots()
+ax1.pie(sales_percents, labels=pie_labels, autopct='%1.1f%%', shadow=True, startangle=90)
+ax1.axis("equal")  # Equal aspect ratio ensures that pie is drawn as a circle.
 
-print("-----------------------")
-print("VISUALIZING THE DATA...")
+plt.show()
+
+#print("-----------------------")
+#print("MONTH: March 2018")
+
+#print("-----------------------")
+#print("CRUNCHING THE DATA...")
+
+#print("-----------------------")
+#print("TOTAL MONTHLY SALES: $12,000.71")
+
+#print("-----------------------")
+#print("TOP SELLING PRODUCTS:")
+#print("  1) Button-Down Shirt: $6,960.35")
+#print("  2) Super Soft Hoodie: $1,875.00")
+#print("  3) etc.")
+
+#print("-----------------------")
+#print("VISUALIZING THE DATA...")
