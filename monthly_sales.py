@@ -6,7 +6,6 @@ import sys
 import csv
 import operator
 
-
 # TODO: write some Python code here to produce the desired functionality...
 
 #Introduces the program
@@ -21,8 +20,6 @@ print("--------------------------------------------")
 print("--------------------------------------------")
 
 #Prints the list of available csv files in the "data" sub-directory of the current repository
-##current_directory = os.getcwd()
-##csv_file_list = os.listdir(current_directory + "/data")
 csv_file_list = os.listdir(os.path.join(os.path.dirname(__file__), "data"))
 print(csv_file_list)
 
@@ -73,8 +70,6 @@ elif month_value == 11:
     month_name = "November"
 elif month_value == 12:
     month_name = "December"
-#print(month_name)
-#print(year_value)
 
 #Reads the csv file and converts the data to a list of dictionaries
 chosen_file_path = os.path.join(os.path.dirname(__file__), "data", chosen_file)
@@ -83,9 +78,6 @@ with open(chosen_file_path, "r") as csv_file:
     reader = csv.DictReader(csv_file)
     for row in reader:
         sales_list.append(dict(row))
-        #print(row["product"], row["sales price"])
-#print(type(sales_list))
-#print(type(sales_list[0]))
 
 #Creates list of products in file as list and what will become the list of sales sums for each product
 product_list = []
@@ -95,8 +87,6 @@ for row in sales_list:
     if test_var == False:
         product_list.append(row["product"])
         summed_dictionary_list.append({"Product":row["product"], "Monthly Sales":float(0)})
-#print(product_list)
-#print(summed_dictionary_list)
 
 #Perform summation calculations
 for row in sales_list:
@@ -105,18 +95,14 @@ for row in sales_list:
         test_var2 = current_product == list_item["Product"]
         if test_var2 == True:
             list_item["Monthly Sales"] = list_item["Monthly Sales"] + float(row["sales price"])
-#print(summed_dictionary_list)
 
 #Creates sorted list (by sales) for top-selling products section and a list of product names in that order for chart
 summed_dictionary_list.sort(key=operator.itemgetter("Monthly Sales"), reverse=True)
-#for list_item in summed_dictionary_list:
-    #product_list.append(list_item["Product"])
 
 #Calculates total monthly sales as a variable
 total_monthly_sales = 0
 for list_item in summed_dictionary_list:
     total_monthly_sales = total_monthly_sales + list_item["Monthly Sales"]
-#print(total_monthly_sales)
 
 #Prints monthly sales by product and total monthly sales
 print("--------------------------------------------")
@@ -140,6 +126,7 @@ print("Creating pie chart depicting product sales")
 print("as a percent of total monthly sales...")
 print("--------------------------------------------")
 
+#Creating pie chart. Taken partially from charts-gallery-exercise
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -155,23 +142,6 @@ for list_item in summed_dictionary_list:
 fig1, ax1 = plt.subplots()
 ax1.pie(sales_percents, labels=pie_labels, autopct='%1.1f%%', shadow=True, startangle=90)
 ax1.axis("equal")  # Equal aspect ratio ensures that pie is drawn as a circle.
+ax1.set_title("Product Sales as a Percent of Total Monthly Sales")
 
 plt.show()
-
-#print("-----------------------")
-#print("MONTH: March 2018")
-
-#print("-----------------------")
-#print("CRUNCHING THE DATA...")
-
-#print("-----------------------")
-#print("TOTAL MONTHLY SALES: $12,000.71")
-
-#print("-----------------------")
-#print("TOP SELLING PRODUCTS:")
-#print("  1) Button-Down Shirt: $6,960.35")
-#print("  2) Super Soft Hoodie: $1,875.00")
-#print("  3) etc.")
-
-#print("-----------------------")
-#print("VISUALIZING THE DATA...")
