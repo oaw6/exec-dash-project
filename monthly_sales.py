@@ -72,8 +72,8 @@ elif month_value == 11:
     month_name = "November"
 elif month_value == 12:
     month_name = "December"
-print(month_name)
-print(year_value)
+#print(month_name)
+#print(year_value)
 
 #Reads the csv file and converts the data to a list of dictionaries
 chosen_file_path = os.path.join(os.path.dirname(__file__), "data", chosen_file)
@@ -106,6 +106,9 @@ for row in sales_list:
             list_item["Monthly Sales"] = list_item["Monthly Sales"] + float(row["sales price"])
 #print(summed_dictionary_list)
 
+#Creates sorted list (by sales) for top-selling products section
+summed_dictionary_list.sort(key=operator.itemgetter("Monthly Sales"), reverse=True)
+
 #Calculates total monthly sales as a variable
 total_monthly_sales = 0
 for list_item in summed_dictionary_list:
@@ -115,12 +118,19 @@ for list_item in summed_dictionary_list:
 #Prints monthly sales by product and total monthly sales
 print("--------------------------------------------")
 print("--------------------------------------------")
+print("Total Sales per Product for ", month_name, ",", year_value)
+print("--------------------------------------------")
 for list_item in summed_dictionary_list:
     print(list_item["Product"], ": ${0:,.2f}".format(list_item["Monthly Sales"]))
 print("--------------------------------------------")
 print("Total Monthly Sales: ${0:,.2f}".format(total_monthly_sales))
 print("--------------------------------------------")
 print("--------------------------------------------")
+print("Top-Selling Products")
+print("--------------------------------------------")
+print("1. ", summed_dictionary_list[0]["Product"], ": ${0:,.2f}".format(summed_dictionary_list[0]["Monthly Sales"]))
+print("2. ", summed_dictionary_list[1]["Product"], ": ${0:,.2f}".format(summed_dictionary_list[1]["Monthly Sales"]))
+print("3. ", summed_dictionary_list[2]["Product"], ": ${0:,.2f}".format(summed_dictionary_list[2]["Monthly Sales"]))
 print("--------------------------------------------")
 
 print("-----------------------")
