@@ -104,22 +104,31 @@ total_monthly_sales = 0
 for list_item in summed_dictionary_list:
     total_monthly_sales = total_monthly_sales + list_item["Monthly Sales"]
 
+#Convert float values to USD format
+def to_usd(price_float):
+    return "${0:,.2f}".format(price_float)
+
 #Prints monthly sales by product and total monthly sales
 print("--------------------------------------------")
 print("--------------------------------------------")
 print("Total Sales per Product for ", month_name, ",", year_value)
 print("--------------------------------------------")
 for list_item in summed_dictionary_list:
-    print(list_item["Product"], ": ${0:,.2f}".format(list_item["Monthly Sales"]))
+    #print(list_item["Product"], ": ${0:,.2f}".format(list_item["Monthly Sales"]))
+    print(list_item["Product"], ": ", to_usd(list_item["Monthly Sales"]))
 print("--------------------------------------------")
-print("Total Monthly Sales: ${0:,.2f}".format(total_monthly_sales))
+#print("Total Monthly Sales: ${0:,.2f}".format(total_monthly_sales))
+print("Total Monthly Sales: ", to_usd(total_monthly_sales))
 print("--------------------------------------------")
 print("--------------------------------------------")
 print("Top-Selling Products")
 print("--------------------------------------------")
-print("1. ", summed_dictionary_list[0]["Product"], ": ${0:,.2f}".format(summed_dictionary_list[0]["Monthly Sales"]))
-print("2. ", summed_dictionary_list[1]["Product"], ": ${0:,.2f}".format(summed_dictionary_list[1]["Monthly Sales"]))
-print("3. ", summed_dictionary_list[2]["Product"], ": ${0:,.2f}".format(summed_dictionary_list[2]["Monthly Sales"]))
+#print("1. ", summed_dictionary_list[0]["Product"], ": ${0:,.2f}".format(summed_dictionary_list[0]["Monthly Sales"]))
+#print("2. ", summed_dictionary_list[1]["Product"], ": ${0:,.2f}".format(summed_dictionary_list[1]["Monthly Sales"]))
+#print("3. ", summed_dictionary_list[2]["Product"], ": ${0:,.2f}".format(summed_dictionary_list[2]["Monthly Sales"]))
+print("1. ", summed_dictionary_list[0]["Product"], ": ", to_usd(summed_dictionary_list[0]["Monthly Sales"]))
+print("2. ", summed_dictionary_list[1]["Product"], ": ", to_usd(summed_dictionary_list[1]["Monthly Sales"]))
+print("3. ", summed_dictionary_list[2]["Product"], ": ", to_usd(summed_dictionary_list[2]["Monthly Sales"]))
 print("--------------------------------------------")
 print("--------------------------------------------")
 print("Creating pie chart depicting product sales")

@@ -1,0 +1,5 @@
+# Ignores files associated with pytest
+
+__pycache__
+
+.pytest_cache
